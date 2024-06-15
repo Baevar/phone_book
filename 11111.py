@@ -12,7 +12,7 @@ def clicked():
 
 # открываем файл в текстовое поле
 
-phone__book_main = ''
+phone__book_main = []
 
 #  Открыть файл
 def open_file():
@@ -44,7 +44,7 @@ def save_file():
                     s = s + v + '::'
                 file.write(f'{s[:-2]}\n')
 
-#  Вывод справочника в формате таблицы
+#  Вывод справочника в формате таблицы    
 def show_phone_book(phone_book):
     phone_book_table.delete(*phone_book_table.get_children())
     dicti = []
@@ -56,6 +56,24 @@ def show_phone_book(phone_book):
     dicti.sort(key=lambda e: e[0])
     for i, (l_n, f_n, p, num) in enumerate(dicti, start=1):
         phone_book_table.insert("", "end", values=(i, l_n, f_n, p, num))
+ 
+ 
+#  Выбор действия
+def choice_action():
+    global phone__book_main
+    if combo_do.get() == 'Добавить':
+        phone__book_main = add_abonent(phone__book_main)
+    
+    return
+
+def add_abonent(phone_book):
+    add_arr = []
+    add_arr.append(txt_last_name.get())
+    
+    return
+ 
+ 
+ 
             
              
 window =Tk()
@@ -108,13 +126,13 @@ txt_phone_number.grid(column=4, row=1)
 
 
 # Список выбора действия
-combo_do = Combobox(window)
+combo_do = Combobox(window, state="readonly")
 combo_do['values'] = ('Найти', 'Добавить', 'Удалить')
 combo_do.current(0)
 combo_do.grid(column=5, row=0)
 
 # Кнопка выполнить действие
-btn_save = Button(text="Выполнить", height=1, width=10, command=clicked)
+btn_save = Button(text="Выполнить", height=1, width=10, command=choice_action)
 btn_save.grid(column=5, row=1)
 
 # # # Вывод телефонной книги
