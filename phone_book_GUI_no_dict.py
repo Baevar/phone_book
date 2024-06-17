@@ -17,7 +17,6 @@
 # Пользователь также может ввести имя или фамилию, и Вы должны реализовать функционал
 # для изменения и удаления данных.
 
-
 from tkinter import *
 from tkinter.ttk import Combobox 
 from tkinter import filedialog
@@ -46,7 +45,7 @@ def open_file():
 # Сохранить файл 
 def save_file():
     global phone__book_main
-    filepath = filedialog.asksaveasfilename(initialfile = "Выберите место сохранения",title = "Сохранить файл",filetypes = (("txt file","*.txt"),("all files","*.*")))
+    filepath = filedialog.asksaveasfilename(initialfile = "phone_book", title = "Сохранить файл", defaultextension='.txt', filetypes = [("txt files","*.txt"),("all files","*.*")])
     if filepath != "":
         with open(filepath, "w", encoding = 'utf-8') as file:
             for i in range(len(phone__book_main)):
